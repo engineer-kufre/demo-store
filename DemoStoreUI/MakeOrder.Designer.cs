@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MakeOrder));
             this.productGridView = new System.Windows.Forms.DataGridView();
-            this.pNameFilterComboBox = new System.Windows.Forms.ComboBox();
             this.undoFilterButton = new System.Windows.Forms.Button();
             this.priceFilterTrackBar = new System.Windows.Forms.TrackBar();
             this.priceFilterTextBox = new System.Windows.Forms.TextBox();
@@ -49,6 +48,7 @@
             this.nextButton = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.pNameFilterTextBox = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.productGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.priceFilterTrackBar)).BeginInit();
             this.SuspendLayout();
@@ -64,23 +64,17 @@
             this.productGridView.Text = "dataGridView1";
             this.productGridView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.productGridView_CellClick);
             // 
-            // pNameFilterComboBox
-            // 
-            this.pNameFilterComboBox.FormattingEnabled = true;
-            this.pNameFilterComboBox.Location = new System.Drawing.Point(12, 283);
-            this.pNameFilterComboBox.Name = "pNameFilterComboBox";
-            this.pNameFilterComboBox.Size = new System.Drawing.Size(203, 28);
-            this.pNameFilterComboBox.TabIndex = 1;
-            this.pNameFilterComboBox.SelectionChangeCommitted += new System.EventHandler(this.FilterListByPName);
-            // 
             // undoFilterButton
             // 
+            this.undoFilterButton.BackColor = System.Drawing.Color.Red;
+            this.undoFilterButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.undoFilterButton.ForeColor = System.Drawing.Color.White;
             this.undoFilterButton.Location = new System.Drawing.Point(221, 283);
             this.undoFilterButton.Name = "undoFilterButton";
             this.undoFilterButton.Size = new System.Drawing.Size(120, 29);
             this.undoFilterButton.TabIndex = 2;
             this.undoFilterButton.Text = "Undo Filter";
-            this.undoFilterButton.UseVisualStyleBackColor = true;
+            this.undoFilterButton.UseVisualStyleBackColor = false;
             this.undoFilterButton.Click += new System.EventHandler(this.undoFilterButton_Click);
             // 
             // priceFilterTrackBar
@@ -96,19 +90,22 @@
             // 
             // priceFilterTextBox
             // 
-            this.priceFilterTextBox.Location = new System.Drawing.Point(347, 283);
+            this.priceFilterTextBox.Location = new System.Drawing.Point(446, 285);
             this.priceFilterTextBox.Name = "priceFilterTextBox";
             this.priceFilterTextBox.Size = new System.Drawing.Size(190, 27);
             this.priceFilterTextBox.TabIndex = 3;
             // 
             // PriceFilterButton
             // 
-            this.PriceFilterButton.Location = new System.Drawing.Point(545, 283);
+            this.PriceFilterButton.BackColor = System.Drawing.Color.Green;
+            this.PriceFilterButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.PriceFilterButton.ForeColor = System.Drawing.Color.White;
+            this.PriceFilterButton.Location = new System.Drawing.Point(344, 283);
             this.PriceFilterButton.Name = "PriceFilterButton";
-            this.PriceFilterButton.Size = new System.Drawing.Size(94, 29);
+            this.PriceFilterButton.Size = new System.Drawing.Size(96, 29);
             this.PriceFilterButton.TabIndex = 4;
             this.PriceFilterButton.Text = "Filter";
-            this.PriceFilterButton.UseVisualStyleBackColor = true;
+            this.PriceFilterButton.UseVisualStyleBackColor = false;
             this.PriceFilterButton.Click += new System.EventHandler(this.PriceFilterButton_Click);
             // 
             // addtoCartButton
@@ -214,7 +211,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label4.Location = new System.Drawing.Point(362, 314);
+            this.label4.Location = new System.Drawing.Point(459, 315);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(164, 20);
             this.label4.TabIndex = 14;
@@ -262,12 +259,20 @@
             this.label6.TabIndex = 16;
             this.label6.Text = "Order List";
             // 
+            // pNameFilterTextBox
+            // 
+            this.pNameFilterTextBox.Location = new System.Drawing.Point(12, 283);
+            this.pNameFilterTextBox.Name = "pNameFilterTextBox";
+            this.pNameFilterTextBox.Size = new System.Drawing.Size(203, 27);
+            this.pNameFilterTextBox.TabIndex = 17;
+            // 
             // MakeOrder
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(175)))), ((int)(((byte)(200)))), ((int)(((byte)(242)))));
             this.ClientSize = new System.Drawing.Size(646, 777);
+            this.Controls.Add(this.pNameFilterTextBox);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.nextButton);
@@ -286,7 +291,6 @@
             this.Controls.Add(this.priceFilterTextBox);
             this.Controls.Add(this.priceFilterTrackBar);
             this.Controls.Add(this.undoFilterButton);
-            this.Controls.Add(this.pNameFilterComboBox);
             this.Controls.Add(this.productGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -304,7 +308,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView productGridView;
-        private System.Windows.Forms.ComboBox pNameFilterComboBox;
         private System.Windows.Forms.Button undoFilterButton;
         private System.Windows.Forms.TrackBar priceFilterTrackBar;
         private System.Windows.Forms.TextBox priceFilterTextBox;
@@ -323,5 +326,6 @@
         private System.Windows.Forms.Button nextButton;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.TextBox pNameFilterTextBox;
     }
 }

@@ -39,14 +39,6 @@ namespace DemoStoreUI
             totalPriceTextBox.Text = "0.00";
         }
 
-        //method to filter by product name selected in combo box
-        private void FilterListByPName(object sender, EventArgs e)
-        {
-            int index = pNameFilterComboBox.SelectedIndex + 1;
-            SqlDataAdapter command = new SqlDataAdapter("SELECT ProductId, ProductName, CostPrice FROM Product WHERE ProductId = " + index, Connection);
-            FillGridView(command);
-        }
-
         //method to undo filter on click
         private void undoFilterButton_Click(object sender, EventArgs e)
         {
@@ -60,12 +52,26 @@ namespace DemoStoreUI
             priceFilterTextBox.Text = priceFilterTrackBar.Value.ToString();
         }
 
-        //filter by price click event
+        //filter by product name or price click event
         private void PriceFilterButton_Click(object sender, EventArgs e)
         {
-            int limit = int.Parse(priceFilterTextBox.Text);
-            SqlDataAdapter command = new SqlDataAdapter("SELECT ProductId, ProductName, CostPrice FROM Product WHERE CostPrice < " + limit, Connection);
+            SqlDataAdapter command;
+            if (pNameFilterTextBox.Text != "")
+            {
+                command = new SqlDataAdapter("SELECT ProductId, ProductName, CostPrice FROM Product WHERE ProductName = '" + pNameFilterTextBox.Text + "'", Connection);
+            }
+            else
+            {
+                int limit = int.Parse(priceFilterTextBox.Text);
+                command = new SqlDataAdapter("SELECT ProductId, ProductName, CostPrice FROM Product WHERE CostPrice < " + limit, Connection);
+            }
+            
             FillGridView(command);
+
+            if (pNameFilterTextBox.Text != "")
+            {
+                pNameFilterTextBox.Text = "";
+            }
         }
 
         //click event to add to cart
@@ -245,11 +251,10 @@ namespace DemoStoreUI
             {
                 productGridView.DataSource = dt;
             }
-
-            //product filter combo box is populated when created
-            pNameFilterComboBox.DisplayMember = "ProductName";
-            pNameFilterComboBox.ValueMember = "ProductId";
-            pNameFilterComboBox.DataSource = dt;
+            else
+            {
+                MessageBox.Show("Query not found");
+            }
         }
     }
 }
